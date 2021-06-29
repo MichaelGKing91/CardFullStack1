@@ -1,0 +1,6 @@
+<h2>Ready to draw?</h2>
+<button (click)="getNewHand()">Yes!</button>
+<br />
+<ng-container *ngFor="let card of myhand">
+  <img [src]="card.image" />
+</ng-container>
