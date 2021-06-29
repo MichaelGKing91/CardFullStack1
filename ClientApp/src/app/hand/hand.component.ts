@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { CardapiService } from '../cardapi.service';
 
 @Component({
   selector: 'app-hand',
@@ -8,26 +8,18 @@ import { Component } from '@angular/core';
 })
 /** hand component*/
 export class HandComponent {
-  http: HttpClient = null;
   myhand = null;
+  capi: CardapiService = null;
+
   /** hand ctor */
-  constructor(theHttp: HttpClient) {
-    this.http = theHttp;
+  constructor(theCapi: CardapiService) {
+
+    this.capi = theCapi;
   }
 
   getNewHand() {
-    // Note to Jeff: Explain why I'm using square brackets
-    if (!window["deck_id"]) {
-      alert('Please create a deck first!');
-      return;
-    }
-
-    console.log(window["deck_id"]);
-    this.http.get<any>(`/card/gethand/${window["deck_id"]}`).subscribe(result => {
-      console.log(result);
-      this.myhand = result.cards;
-    }, error => {
-      console.log(error);
+    this.capi.getNewHand(hand_result => {
+      this.myhand = hand_result;
     });
   }
 }

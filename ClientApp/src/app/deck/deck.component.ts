@@ -1,30 +1,27 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component } from '@angular/core';
+import { CardapiService } from '../cardapi.service';
 
 @Component({
   selector: 'app-deck',
   templateUrl: './deck.component.html',
   styleUrls: ['./deck.component.css']
 })
-/** deck component*/
-export class DeckComponent {
-/** deck ctor */
-  message = "";
-  http: HttpClient = null;
 
-  constructor(theHttp: HttpClient) {
-    this.http = theHttp;
+export class DeckComponent {
+
+  message = "";
+  capi: CardapiService = null;
+
+  constructor(theCapi: CardapiService) {
+    this.capi = theCapi;
   }
 
   getNewDeck() {
-    this.http.get<any>('/card/newdeck').subscribe(result => {
-      console.log(result);
-      window["deck_id"] = result.deck_id;
-      this.message = `You have a new deck! The ID is ${result.deck_id}`;
-    }, error => {
-      console.log(error);
+    this.capi.getNewDeck(id_result => {
+      //console.log(`Got it! ${id_result}`);
+      this.message = `Your deck has id ${id_result}!`;
     });
-
   }
 
 

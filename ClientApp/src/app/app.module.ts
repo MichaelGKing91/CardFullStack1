@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { DeckComponent } from './deck/deck.component';
 import { HandComponent } from './hand/hand.component';
+import { CardapiService } from './cardapi.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { HandComponent } from './hand/hand.component';
       { path: 'hand', component: HandComponent}
     ])
   ],
-  providers: [],
+  providers: [CardapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

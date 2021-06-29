@@ -37,5 +37,11 @@ namespace NewCardDemo.Controllers
             string json = await response.Content.ReadAsStringAsync();
             return json;
         }
+
+        //public List<Employee> getAllEmps()
+        //{
+        //    //allEmps = DAL.getAllEmployees();
+        //    //return allEmps;
+        //}
     }
 }
